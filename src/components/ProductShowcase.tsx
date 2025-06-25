@@ -57,18 +57,18 @@ const ProductShowcase = () => {
     <section ref={sectionRef} className="min-h-screen bg-black relative overflow-hidden py-20">
       {/* Animated Fabric Background */}
       <div className="absolute inset-0">
-        <div className="w-full h-full bg-gradient-to-br from-neon-blue/5 via-neon-purple/5 to-neon-pink/5 animate-fabric-wave"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-neon-blue/10 to-transparent animate-pulse"></div>
+        <div className="w-full h-full bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5"></div>
+        <div className="absolute inset-0 bg-gradient-radial from-transparent via-blue-500/10 to-transparent animate-pulse"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-7xl font-orbitron font-black text-white mb-6">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">
+          <h2 className="text-5xl md:text-7xl font-bold text-white mb-6">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
               COLLECTIONS
             </span>
           </h2>
-          <p className="text-xl text-white/70 font-inter max-w-2xl mx-auto">
+          <p className="text-xl text-white/70 max-w-2xl mx-auto">
             Discover our revolutionary pieces where innovation meets elegance
           </p>
         </div>
@@ -78,44 +78,46 @@ const ProductShowcase = () => {
           {/* Left Side - Product Image */}
           <div className="relative overflow-hidden group">
             <div className={`absolute inset-0 transition-transform duration-1000 ${
-              isVisible ? 'animate-split-reveal' : 'transform translate-x-[-100%]'
+              isVisible ? 'translate-x-0' : 'translate-x-[-100%]'
             }`}>
               <img
                 src={`https://images.unsplash.com/${products[activeProduct].image}?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80`}
                 alt={products[activeProduct].name}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 mix-blend-overlay"></div>
-              <div className="absolute inset-0 border-4 border-neon-blue/50 animate-neon-pulse"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 mix-blend-overlay"></div>
+              <div className="absolute inset-0 border-4 border-blue-400/50 animate-pulse"></div>
             </div>
           </div>
 
           {/* Right Side - Product Info */}
           <div className="bg-gradient-to-br from-gray-900/95 to-black/95 p-12 flex flex-col justify-center relative">
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%2300f3ff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+            <div className="absolute inset-0 opacity-30" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300f3ff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+            }}></div>
             
             <div className="relative z-10">
-              <div className="text-neon-blue font-inter text-sm font-semibold mb-2 tracking-widest">
+              <div className="text-blue-400 text-sm font-semibold mb-2 tracking-widest">
                 {products[activeProduct].tech}
               </div>
               
-              <h3 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-4 group-hover:animate-text-distort cursor-pointer">
+              <h3 className="text-4xl md:text-5xl font-bold text-white mb-4 hover:animate-pulse cursor-pointer">
                 {products[activeProduct].name}
               </h3>
               
-              <p className="text-lg text-white/80 font-inter mb-6 leading-relaxed">
+              <p className="text-lg text-white/80 mb-6 leading-relaxed">
                 {products[activeProduct].description}
               </p>
               
-              <div className="text-3xl font-orbitron font-bold text-neon-green mb-8">
+              <div className="text-3xl font-bold text-green-400 mb-8">
                 {products[activeProduct].price}
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="px-8 py-4 bg-neon-blue text-black font-inter font-semibold hover:bg-transparent hover:text-neon-blue border-2 border-neon-blue transition-all duration-300 transform hover:scale-105">
+                <button className="px-8 py-4 bg-blue-400 text-black font-semibold hover:bg-transparent hover:text-blue-400 border-2 border-blue-400 transition-all duration-300 transform hover:scale-105">
                   VIEW DETAILS
                 </button>
-                <button className="px-8 py-4 border-2 border-neon-purple text-neon-purple hover:bg-neon-purple hover:text-black transition-all duration-300 animate-neon-pulse">
+                <button className="px-8 py-4 border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-black transition-all duration-300 animate-pulse">
                   TRY VIRTUAL
                 </button>
               </div>
@@ -131,8 +133,8 @@ const ProductShowcase = () => {
               onClick={() => setActiveProduct(index)}
               className={`w-4 h-4 rounded-full border-2 transition-all duration-300 ${
                 index === activeProduct
-                  ? 'bg-neon-blue border-neon-blue animate-neon-pulse'
-                  : 'border-white/30 hover:border-neon-blue'
+                  ? 'bg-blue-400 border-blue-400 animate-pulse'
+                  : 'border-white/30 hover:border-blue-400'
               }`}
             />
           ))}
