@@ -27,6 +27,10 @@ const Navigation = () => {
     navigate('/virtual-showroom');
   };
 
+  const handleInnovationLab = () => {
+    navigate('/innovation-lab');
+  };
+
   const handleShopNow = () => {
     navigate('/product-details/neural-jacket');
   };
@@ -54,6 +58,12 @@ const Navigation = () => {
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-neon-blue transition-all duration-300 group-hover:w-full"></span>
               </a>
             ))}
+            <button 
+              onClick={handleInnovationLab}
+              className="px-6 py-2 border border-neon-purple text-neon-purple hover:bg-neon-purple hover:text-black transition-all duration-300 font-inter font-medium"
+            >
+              INNOVATION LAB
+            </button>
             <button 
               onClick={handleShopNow}
               className="px-6 py-2 border border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-black transition-all duration-300 font-inter font-medium animate-neon-pulse"
@@ -85,6 +95,15 @@ const Navigation = () => {
                   {item.name}
                 </a>
               ))}
+              <button 
+                onClick={() => {
+                  handleInnovationLab();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="px-6 py-2 border border-neon-purple text-neon-purple hover:bg-neon-purple hover:text-black transition-all duration-300 font-inter font-medium self-start"
+              >
+                INNOVATION LAB
+              </button>
               <button 
                 onClick={() => {
                   handleShopNow();
