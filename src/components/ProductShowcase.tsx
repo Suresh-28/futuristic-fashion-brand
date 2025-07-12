@@ -1,10 +1,11 @@
-
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProductShowcase = () => {
   const [activeProduct, setActiveProduct] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const products = [
     {
@@ -12,21 +13,24 @@ const ProductShowcase = () => {
       description: "Adaptive fabric responds to biometric data",
       price: "$2,499",
       image: "photo-1485827404703-89b55fcc595e",
-      tech: "Bio-responsive Fibers"
+      tech: "Bio-responsive Fibers",
+      id: "neural-jacket"
     },
     {
-      name: "QUANTUM DRESS",
+      name: "QUANTUM DRESS", 
       description: "Light-bending materials create dynamic patterns",
-      price: "$3,799", 
-      image: "photo-1526374965328-7f61d4dc18c5",
-      tech: "Photonic Weave"
+      price: "$3,799",
+      image: "photo-1485827404703-89b55fcc595e",
+      tech: "Photonic Weave",
+      id: "quantum-dress"
     },
     {
       name: "CYBER PANTS",
       description: "Integrated haptic feedback for enhanced experience",
       price: "$1,899",
-      image: "photo-1531297484001-80022131f5a1",
-      tech: "Sensory Integration"
+      image: "photo-1485827404703-89b55fcc595e",
+      tech: "Sensory Integration",
+      id: "cyber-pants"
     }
   ];
 
@@ -52,6 +56,14 @@ const ProductShowcase = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  const handleViewDetails = () => {
+    navigate(`/product-details/${products[activeProduct].id}`);
+  };
+
+  const handleTryVirtual = () => {
+    navigate('/virtual-showroom');
+  };
 
   return (
     <section ref={sectionRef} className="min-h-screen bg-black relative overflow-hidden py-20">
@@ -114,10 +126,16 @@ const ProductShowcase = () => {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="px-8 py-4 bg-blue-400 text-black font-semibold hover:bg-transparent hover:text-blue-400 border-2 border-blue-400 transition-all duration-300 transform hover:scale-105">
+                <button 
+                  onClick={handleViewDetails}
+                  className="px-8 py-4 bg-blue-400 text-black font-semibold hover:bg-transparent hover:text-blue-400 border-2 border-blue-400 transition-all duration-300 transform hover:scale-105"
+                >
                   VIEW DETAILS
                 </button>
-                <button className="px-8 py-4 border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-black transition-all duration-300 animate-pulse">
+                <button 
+                  onClick={handleTryVirtual}
+                  className="px-8 py-4 border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-black transition-all duration-300 animate-pulse"
+                >
                   TRY VIRTUAL
                 </button>
               </div>

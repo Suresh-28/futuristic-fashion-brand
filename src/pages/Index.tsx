@@ -4,6 +4,8 @@ import Navigation from '../components/Navigation';
 import HeroSection from '../components/HeroSection';
 import ProductShowcase from '../components/ProductShowcase';
 import TechnologySection from '../components/TechnologySection';
+import AboutSection from '../components/AboutSection';
+import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 
 const Index = () => {
@@ -37,6 +39,12 @@ const Index = () => {
       </div>
       <div id="technology">
         <TechnologySection />
+      </div>
+      <div id="about">
+        <AboutSection />
+      </div>
+      <div id="contact">
+        <ContactSection />
       </div>
       <Footer />
     </div>

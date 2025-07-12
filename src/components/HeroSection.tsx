@@ -1,9 +1,10 @@
-
 import React, { useEffect, useRef } from 'react';
 import { ArrowDown } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -89,6 +90,21 @@ const HeroSection = () => {
     };
   }, []);
 
+  const handleExploreCollection = () => {
+    const collectionsSection = document.getElementById('collections');
+    if (collectionsSection) {
+      collectionsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleVirtualShowroom = () => {
+    navigate('/virtual-showroom');
+  };
+
+  const handleInnovationLab = () => {
+    navigate('/innovation-lab');
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       {/* Animated Background */}
@@ -122,15 +138,29 @@ const HeroSection = () => {
           Experience the next evolution of wearable art.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <button className="group px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple text-black font-inter font-semibold text-lg rounded-none border-2 border-transparent hover:border-neon-blue hover:bg-transparent hover:text-neon-blue transition-all duration-500 transform hover:scale-105">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+          <button 
+            onClick={handleExploreCollection}
+            className="group px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple text-black font-inter font-semibold text-lg rounded-none border-2 border-transparent hover:border-neon-blue hover:bg-transparent hover:text-neon-blue transition-all duration-500 transform hover:scale-105"
+          >
             <span className="group-hover:animate-text-distort">EXPLORE COLLECTION</span>
           </button>
           
-          <button className="px-8 py-4 border-2 border-neon-pink text-neon-pink font-inter font-semibold text-lg rounded-none hover:bg-neon-pink hover:text-black transition-all duration-500 animate-neon-pulse">
+          <button 
+            onClick={handleVirtualShowroom}
+            className="px-8 py-4 border-2 border-neon-pink text-neon-pink font-inter font-semibold text-lg rounded-none hover:bg-neon-pink hover:text-black transition-all duration-500 animate-neon-pulse"
+          >
             VIRTUAL SHOWROOM
           </button>
         </div>
+
+        {/* Innovation Lab Button */}
+        <button 
+          onClick={handleInnovationLab}
+          className="px-6 py-3 border border-neon-green text-neon-green hover:bg-neon-green hover:text-black transition-all duration-300 font-inter font-medium"
+        >
+          EXPLORE INNOVATION LAB
+        </button>
       </div>
 
       {/* Scroll Indicator */}
