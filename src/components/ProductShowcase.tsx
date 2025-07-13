@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Star, ShoppingCart } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
@@ -12,7 +11,7 @@ const ProductShowcase = () => {
       id: 'neural-jacket',
       name: 'Neural Sync Jacket',
       price: 2499,
-      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&h=600&fit=crop',
+      image: 'https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=500&h=600&fit=crop',
       description: 'AI-powered adaptive clothing that responds to your biometric data',
       features: ['Temperature Control', 'Biometric Monitoring', 'Wireless Charging'],
       rating: 4.9
@@ -21,7 +20,7 @@ const ProductShowcase = () => {
       id: 'quantum-dress',
       name: 'Quantum Shift Dress',
       price: 3299,
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop',
+      image: 'https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=500&h=600&fit=crop',
       description: 'Color-changing fabric with programmable patterns',
       features: ['Color Morphing', 'Pattern Programming', 'Smart Fabric'],
       rating: 4.8
@@ -30,7 +29,7 @@ const ProductShowcase = () => {
       id: 'cyber-sneakers',
       name: 'Cyber Step Sneakers',
       price: 1899,
-      image: 'https://images.unsplash.com/photo-1561144257-e32e6cba6f4b?w=500&h=600&fit=crop',
+      image: 'https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=500&h=600&fit=crop',
       description: 'Self-lacing shoes with energy harvesting soles',
       features: ['Auto-Lacing', 'Energy Harvesting', 'Health Tracking'],
       rating: 4.7
@@ -55,6 +54,31 @@ const ProductShowcase = () => {
 
   return (
     <section className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 py-20 relative overflow-hidden">
+      {/* Animated T-Shirt Background Elements */}
+      <div className="absolute top-10 left-10 w-32 h-40 opacity-10 animate-float">
+        <img
+          src="https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=300&h=400&fit=crop"
+          alt="Background T-Shirt"
+          className="w-full h-full object-cover rounded-lg animate-rotate-3d"
+        />
+      </div>
+
+      <div className="absolute bottom-20 right-20 w-40 h-52 opacity-15 animate-float" style={{ animationDelay: '3s' }}>
+        <img
+          src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=300&h=400&fit=crop"
+          alt="Background T-Shirt"
+          className="w-full h-full object-cover rounded-lg animate-fabric-wave"
+        />
+      </div>
+
+      <div className="absolute top-1/2 left-5 w-36 h-48 opacity-12 animate-float" style={{ animationDelay: '1.5s' }}>
+        <img
+          src="https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=300&h=400&fit=crop"
+          alt="Background T-Shirt"
+          className="w-full h-full object-cover rounded-lg animate-neon-pulse"
+        />
+      </div>
+
       {/* Parallax Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-10 w-64 h-64 bg-neon-purple/10 rounded-full blur-3xl animate-pulse" />
@@ -78,15 +102,18 @@ const ProductShowcase = () => {
 
         {/* Product Showcase */}
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Product Image */}
+          {/* Product Image with Large Animated T-Shirt */}
           <div className="relative group">
             <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500" />
             <div className="relative bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-neon-blue/30 group-hover:border-neon-blue/50 transition-all duration-500">
-              <img
-                src={products[currentProduct].image}
-                alt={products[currentProduct].name}
-                className="w-full h-96 object-cover rounded-lg mb-6 transform group-hover:scale-105 transition-transform duration-500"
-              />
+              <div className="relative">
+                <img
+                  src={products[currentProduct].image}
+                  alt={products[currentProduct].name}
+                  className="w-full h-96 object-cover rounded-lg mb-6 transform group-hover:scale-105 transition-transform duration-500 animate-fabric-wave"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-neon-blue/10 to-transparent rounded-lg animate-neon-pulse"></div>
+              </div>
               <div className="flex justify-center space-x-2">
                 {products.map((_, index) => (
                   <button
@@ -167,11 +194,14 @@ const ProductShowcase = () => {
                 key={product.id}
                 className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-lg p-6 border border-white/10 hover:border-neon-blue/50 transition-all duration-500 group hover:transform hover:scale-105"
               >
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-48 object-cover rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300"
-                />
+                <div className="relative">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-48 object-cover rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300 animate-fabric-wave"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-neon-purple/10 to-transparent rounded-lg group-hover:animate-neon-pulse"></div>
+                </div>
                 
                 <div className="flex items-center space-x-1 mb-2">
                   {[...Array(5)].map((_, i) => (

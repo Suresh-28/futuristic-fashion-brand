@@ -1,140 +1,127 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Cpu, Layers, Zap, Eye } from 'lucide-react';
+
+import React from 'react';
+import { Cpu, Zap, Brain, Layers, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const TechnologySection = () => {
-  const [hoveredTech, setHoveredTech] = useState<number | null>(null);
-  const [scrollY, setScrollY] = useState(0);
-  const sectionRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const technologies = [
+    {
+      icon: Brain,
+      title: "Neural Interface",
+      description: "Direct brain-to-fabric communication for intuitive control",
+      color: "neon-blue"
+    },
+    {
+      icon: Zap,
+      title: "Energy Harvesting",
+      description: "Convert body heat and movement into electrical power",
+      color: "neon-purple"
+    },
+    {
+      icon: Layers,
+      title: "Smart Fabrics",
+      description: "Programmable materials that adapt to environment",
+      color: "neon-pink"
+    },
+    {
+      icon: Cpu,
+      title: "Quantum Processors",
+      description: "Miniaturized computing power woven into every thread",
+      color: "neon-green"
+    }
+  ];
 
   const handleExploreInnovationLab = () => {
     navigate('/innovation-lab');
   };
 
-  const technologies = [
-    {
-      icon: Cpu,
-      title: "NEURAL FABRICS",
-      description: "Smart textiles that adapt to your body's needs in real-time",
-      details: "Biomimetic fibers respond to temperature, humidity, and biometric data"
-    },
-    {
-      icon: Layers,
-      title: "QUANTUM WEAVING",
-      description: "Molecular-level construction for impossible material properties",
-      details: "Subatomic engineering creates fabrics lighter than air yet stronger than steel"
-    },
-    {
-      icon: Zap,
-      title: "ENERGY HARVESTING",
-      description: "Garments that power themselves through kinetic and solar energy",
-      details: "Integrated photovoltaic threads and piezoelectric fibers generate power"
-    },
-    {
-      icon: Eye,
-      title: "AUGMENTED REALITY",
-      description: "Clothing that interfaces with digital environments seamlessly",
-      details: "Embedded displays and sensors create immersive fashion experiences"
-    }
-  ];
-
   return (
-    <section ref={sectionRef} className="min-h-screen bg-gradient-to-b from-black to-gray-900 py-20 relative overflow-hidden">
-      {/* Parallax Background Elements */}
-      <div className="absolute inset-0">
-        <div 
-          className="absolute top-20 left-10 w-32 h-32 bg-neon-blue/10 rounded-full blur-xl"
-          style={{ transform: `translateY(${scrollY * 0.1}px)` }}
-        />
-        <div 
-          className="absolute top-40 right-20 w-24 h-24 bg-neon-purple/10 rounded-full blur-xl"
-          style={{ transform: `translateY(${scrollY * 0.15}px)` }}
-        />
-        <div 
-          className="absolute bottom-32 left-1/3 w-40 h-40 bg-neon-pink/10 rounded-full blur-xl"
-          style={{ transform: `translateY(${scrollY * 0.08}px)` }}
+    <section className="min-h-screen bg-gradient-to-b from-black to-gray-900 py-20 relative overflow-hidden">
+      {/* Large Animated T-Shirt Images */}
+      <div className="absolute top-20 right-10 w-64 h-80 opacity-20 animate-float">
+        <img
+          src="https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=400&h=500&fit=crop"
+          alt="Tech T-Shirt"
+          className="w-full h-full object-cover rounded-lg border-2 border-neon-blue/20 animate-rotate-3d transform hover:scale-110 transition-transform duration-500"
         />
       </div>
 
+      <div className="absolute bottom-32 left-16 w-56 h-72 opacity-15 animate-float" style={{ animationDelay: '2s' }}>
+        <img
+          src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=400&h=500&fit=crop"
+          alt="Smart T-Shirt"
+          className="w-full h-full object-cover rounded-lg border-2 border-neon-purple/20 animate-fabric-wave transform hover:scale-110 transition-transform duration-500"
+        />
+      </div>
+
+      <div className="absolute top-1/2 left-10 w-48 h-64 opacity-18 animate-float" style={{ animationDelay: '4s' }}>
+        <img
+          src="https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=400&h=500&fit=crop"
+          alt="Future T-Shirt"
+          className="w-full h-full object-cover rounded-lg border-2 border-neon-pink/20 animate-neon-pulse transform hover:scale-110 transition-transform duration-500"
+        />
+      </div>
+
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-neon-blue/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/3 w-64 h-64 bg-neon-purple/5 rounded-full blur-2xl animate-pulse" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-20">
+        {/* Header */}
+        <div className="text-center mb-16">
           <h2 className="text-5xl md:text-7xl font-orbitron font-black text-white mb-6">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-purple via-neon-blue to-neon-green">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink">
               TECHNOLOGY
             </span>
           </h2>
           <p className="text-xl text-white/70 font-inter max-w-3xl mx-auto leading-relaxed">
-            Pioneering the fusion of advanced materials science, artificial intelligence, 
-            and sustainable innovation to create the future of fashion
+            Revolutionary innovations that power the future of fashion. 
+            Our cutting-edge technologies seamlessly integrate with human biology.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Technology Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {technologies.map((tech, index) => (
             <div
               key={index}
-              className="group relative p-8 bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-white/10 hover:border-neon-blue/50 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2"
-              onMouseEnter={() => setHoveredTech(index)}
-              onMouseLeave={() => setHoveredTech(null)}
+              className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-lg p-6 border border-white/10 hover:border-neon-blue/50 transition-all duration-500 group hover:transform hover:scale-105"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/5 to-neon-purple/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className={`w-16 h-16 bg-${tech.color}/20 rounded-lg flex items-center justify-center mb-4 group-hover:animate-pulse`}>
+                <tech.icon className={`text-${tech.color}`} size={32} />
+              </div>
               
-              <div className="relative z-10 mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-neon-blue to-neon-purple rounded-lg flex items-center justify-center group-hover:animate-rotate-3d">
-                  <tech.icon className="text-black" size={32} />
-                </div>
-              </div>
-
-              <div className="relative z-10">
-                <h3 
-                  className="text-xl font-orbitron font-bold text-white mb-4 group-hover:text-neon-blue transition-colors duration-300 cursor-pointer"
-                  onMouseEnter={(e) => e.currentTarget.classList.add('animate-text-distort')}
-                  onMouseLeave={(e) => e.currentTarget.classList.remove('animate-text-distort')}
-                >
-                  {tech.title}
-                </h3>
-                
-                <p className="text-white/70 font-inter mb-4 leading-relaxed">
-                  {tech.description}
-                </p>
-
-                <div className={`overflow-hidden transition-all duration-500 ${
-                  hoveredTech === index ? 'max-h-20 opacity-100' : 'max-h-0 opacity-0'
-                }`}>
-                  <p className="text-sm text-neon-blue font-inter italic">
-                    {tech.details}
-                  </p>
-                </div>
-
-                <div className="mt-4 w-0 h-0.5 bg-gradient-to-r from-neon-blue to-neon-purple group-hover:w-full transition-all duration-500" />
-              </div>
-
-              <div className="absolute top-0 right-0 w-8 h-8">
-                <div className="absolute top-2 right-2 w-4 h-0.5 bg-neon-blue group-hover:animate-neon-pulse" />
-                <div className="absolute top-2 right-2 w-0.5 h-4 bg-neon-blue group-hover:animate-neon-pulse" />
-              </div>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-neon-blue transition-colors">
+                {tech.title}
+              </h3>
+              
+              <p className="text-white/70 text-sm leading-relaxed">
+                {tech.description}
+              </p>
             </div>
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-20">
-          <button 
-            onClick={handleExploreInnovationLab}
-            className="px-12 py-4 bg-gradient-to-r from-neon-purple via-neon-blue to-neon-green text-black font-inter font-bold text-lg hover:shadow-2xl hover:shadow-neon-blue/50 transition-all duration-500 transform hover:scale-105"
-          >
-            EXPLORE INNOVATION LAB
-          </button>
+        {/* Call to Action */}
+        <div className="text-center">
+          <div className="bg-gradient-to-r from-neon-blue/10 to-neon-purple/10 border border-neon-blue/30 rounded-lg p-8 max-w-4xl mx-auto">
+            <h3 className="text-3xl font-bold text-white mb-4">Explore Our Innovation Lab</h3>
+            <p className="text-white/70 mb-6 max-w-2xl mx-auto">
+              Dive deeper into the research and development behind our revolutionary technologies. 
+              Discover prototypes, experimental materials, and the future of wearable tech.
+            </p>
+            <button 
+              onClick={handleExploreInnovationLab}
+              className="group px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple text-black font-semibold rounded-lg hover:scale-105 transition-all duration-300 flex items-center space-x-2 mx-auto"
+            >
+              <span>EXPLORE INNOVATION LAB</span>
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
         </div>
       </div>
     </section>
