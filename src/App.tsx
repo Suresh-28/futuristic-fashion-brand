@@ -10,8 +10,9 @@ import VirtualShowroom from "./pages/VirtualShowroom";
 import InnovationLab from "./pages/InnovationLab";
 import InnovationDetail from "./pages/InnovationDetail";
 import InnovationApply from "./pages/InnovationApply";
-import ProductDetails from "./pages/ProductDetails";
 import Checkout from "./pages/Checkout";
+import OrderSuccess from "./pages/OrderSuccess";
+import Orders from "./pages/Orders";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,8 +30,9 @@ const App = () => (
             <Route path="/innovation-lab" element={<InnovationLab />} />
             <Route path="/innovation-detail/:innovationId" element={<InnovationDetail />} />
             <Route path="/innovation-lab/apply" element={<InnovationApply />} />
-            <Route path="/product-details/:productId" element={<ProductDetails />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/order-success" element={<OrderSuccess />} />
+            <Route path="/orders" element={<Orders />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

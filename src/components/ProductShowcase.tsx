@@ -1,11 +1,10 @@
+
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Star, Eye, ShoppingCart } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Star, ShoppingCart } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 
 const ProductShowcase = () => {
   const [currentProduct, setCurrentProduct] = useState(0);
-  const navigate = useNavigate();
   const { addToCart } = useCart();
 
   const products = [
@@ -13,7 +12,7 @@ const ProductShowcase = () => {
       id: 'neural-jacket',
       name: 'Neural Sync Jacket',
       price: 2499,
-      image: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=500&h=600&fit=crop',
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&h=600&fit=crop',
       description: 'AI-powered adaptive clothing that responds to your biometric data',
       features: ['Temperature Control', 'Biometric Monitoring', 'Wireless Charging'],
       rating: 4.9
@@ -22,7 +21,7 @@ const ProductShowcase = () => {
       id: 'quantum-dress',
       name: 'Quantum Shift Dress',
       price: 3299,
-      image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500&h=600&fit=crop',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop',
       description: 'Color-changing fabric with programmable patterns',
       features: ['Color Morphing', 'Pattern Programming', 'Smart Fabric'],
       rating: 4.8
@@ -31,7 +30,7 @@ const ProductShowcase = () => {
       id: 'cyber-sneakers',
       name: 'Cyber Step Sneakers',
       price: 1899,
-      image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=600&fit=crop',
+      image: 'https://images.unsplash.com/photo-1561144257-e32e6cba6f4b?w=500&h=600&fit=crop',
       description: 'Self-lacing shoes with energy harvesting soles',
       features: ['Auto-Lacing', 'Energy Harvesting', 'Health Tracking'],
       rating: 4.7
@@ -44,10 +43,6 @@ const ProductShowcase = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, [products.length]);
-
-  const handleViewDetails = (productId: string) => {
-    navigate(`/product-details/${productId}`);
-  };
 
   const handleAddToCart = (product: typeof products[0]) => {
     addToCart({
@@ -150,22 +145,14 @@ const ProductShowcase = () => {
               </ul>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            {/* Action Button */}
+            <div>
               <button
                 onClick={() => handleAddToCart(products[currentProduct])}
-                className="flex-1 px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple text-black font-semibold rounded-lg hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2"
+                className="w-full px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple text-black font-semibold rounded-lg hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2"
               >
                 <ShoppingCart size={20} />
                 <span>Add to Cart</span>
-              </button>
-              
-              <button
-                onClick={() => handleViewDetails(products[currentProduct].id)}
-                className="flex-1 px-8 py-4 border border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-black transition-all duration-300 rounded-lg flex items-center justify-center space-x-2"
-              >
-                <Eye size={20} />
-                <span>View Details</span>
               </button>
             </div>
           </div>
@@ -213,20 +200,12 @@ const ProductShowcase = () => {
                   <span className="text-neon-blue text-xl font-bold">
                     ${product.price.toLocaleString()}
                   </span>
-                  <div className="flex space-x-2">
-                    <button
-                      onClick={() => handleAddToCart(product)}
-                      className="p-2 bg-neon-blue/20 text-neon-blue hover:bg-neon-blue hover:text-black transition-all duration-300 rounded-lg"
-                    >
-                      <ShoppingCart size={16} />
-                    </button>
-                    <button
-                      onClick={() => handleViewDetails(product.id)}
-                      className="p-2 bg-neon-purple/20 text-neon-purple hover:bg-neon-purple hover:text-black transition-all duration-300 rounded-lg"
-                    >
-                      <Eye size={16} />
-                    </button>
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart(product)}
+                    className="p-2 bg-neon-blue/20 text-neon-blue hover:bg-neon-blue hover:text-black transition-all duration-300 rounded-lg"
+                  >
+                    <ShoppingCart size={16} />
+                  </button>
                 </div>
               </div>
             ))}

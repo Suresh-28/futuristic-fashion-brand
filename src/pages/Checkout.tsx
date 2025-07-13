@@ -1,11 +1,12 @@
 
 import React, { useState } from 'react';
 import { ArrowLeft, CreditCard, User, MapPin } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 
 const Checkout = () => {
-  const { items, getTotalPrice, clearCart } = useCart();
+  const { items, getTotalPrice, createOrder } = useCart();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     firstName: '',
@@ -28,9 +29,19 @@ const Checkout = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate order processing
-    alert('Order placed successfully! Thank you for your purchase.');
-    clearCart();
+    
+    // Create the order
+    const orderId = createOrder({
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      address: formData.address,
+      city: formData.city,
+      zipCode: formData.zipCode
+    });
+    
+    // Navigate to order success page
+    navigate('/order-success', { state: { orderId } });
   };
 
   if (items.length === 0) {

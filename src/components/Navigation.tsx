@@ -32,8 +32,8 @@ const Navigation = () => {
     navigate('/innovation-lab');
   };
 
-  const handleShopNow = () => {
-    navigate('/product-details/neural-jacket');
+  const handleOrders = () => {
+    navigate('/orders');
   };
 
   return (
@@ -66,10 +66,10 @@ const Navigation = () => {
               INNOVATION LAB
             </button>
             <button 
-              onClick={handleShopNow}
-              className="px-6 py-2 border border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-black transition-all duration-300 font-inter font-medium animate-neon-pulse"
+              onClick={handleOrders}
+              className="px-6 py-2 border border-neon-green text-neon-green hover:bg-neon-green hover:text-black transition-all duration-300 font-inter font-medium"
             >
-              SHOP NOW
+              MY ORDERS
             </button>
             <Cart />
           </div>
@@ -111,12 +111,12 @@ const Navigation = () => {
               </button>
               <button 
                 onClick={() => {
-                  handleShopNow();
+                  handleOrders();
                   setIsMobileMenuOpen(false);
                 }}
-                className="px-6 py-2 border border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-black transition-all duration-300 font-inter font-medium self-start"
+                className="px-6 py-2 border border-neon-green text-neon-green hover:bg-neon-green hover:text-black transition-all duration-300 font-inter font-medium self-start"
               >
-                SHOP NOW
+                MY ORDERS
               </button>
             </div>
           </div>
