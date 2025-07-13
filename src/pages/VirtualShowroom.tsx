@@ -10,40 +10,23 @@ const VirtualShowroom = () => {
   const products = [
     {
       name: "Neural Jacket",
-      model: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=800&h=600&fit=crop",
+      model: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop",
       description: "Experience the future of adaptive clothing"
     },
     {
       name: "Quantum Dress",
-      model: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=800&h=600&fit=crop",
+      model: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop",
       description: "Light-bending fabric technology"
     },
     {
       name: "Cyber Pants",
-      model: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=800&h=600&fit=crop",
+      model: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop",
       description: "Integrated haptic feedback system"
     }
   ];
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      {/* Large Animated T-Shirt Background */}
-      <div className="absolute top-10 right-20 w-72 h-96 opacity-10 animate-float">
-        <img
-          src="https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=600&h=800&fit=crop"
-          alt="Background T-Shirt"
-          className="w-full h-full object-cover rounded-lg animate-rotate-3d"
-        />
-      </div>
-
-      <div className="absolute bottom-20 left-10 w-64 h-80 opacity-12 animate-float" style={{ animationDelay: '3s' }}>
-        <img
-          src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=600&h=800&fit=crop"
-          alt="Background T-Shirt"
-          className="w-full h-full object-cover rounded-lg animate-fabric-wave"
-        />
-      </div>
-
       {/* Header */}
       <header className="border-b border-neon-blue/30 p-6 relative z-20">
         <div className="flex items-center justify-between max-w-7xl mx-auto">

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import { ArrowDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -112,31 +113,6 @@ const HeroSection = () => {
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"
       />
-
-      {/* Animated T-Shirt Images */}
-      <div className="absolute top-20 left-20 w-48 h-64 opacity-30 animate-float">
-        <img
-          src="https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=400&h=500&fit=crop"
-          alt="Futuristic T-Shirt"
-          className="w-full h-full object-cover rounded-lg border-2 border-neon-blue/30 animate-pulse transform hover:scale-110 transition-transform duration-500"
-        />
-      </div>
-
-      <div className="absolute bottom-40 right-32 w-56 h-72 opacity-25 animate-float" style={{ animationDelay: '2s' }}>
-        <img
-          src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=400&h=500&fit=crop"
-          alt="Tech T-Shirt"
-          className="w-full h-full object-cover rounded-lg border-2 border-neon-purple/30 animate-neon-pulse transform hover:scale-110 transition-transform duration-500"
-        />
-      </div>
-
-      <div className="absolute top-1/3 right-10 w-52 h-68 opacity-20 animate-float" style={{ animationDelay: '4s' }}>
-        <img
-          src="https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=400&h=500&fit=crop"
-          alt="Smart T-Shirt"
-          className="w-full h-full object-cover rounded-lg border-2 border-neon-pink/30 animate-fabric-wave transform hover:scale-110 transition-transform duration-500"
-        />
-      </div>
 
       {/* 3D Mannequin Container */}
       <div className="absolute right-10 top-1/2 transform -translate-y-1/2 w-64 h-96 opacity-20">
