@@ -1,11 +1,14 @@
 
 import React from 'react';
 import { ArrowLeft, Cpu, Zap, Brain, Layers, Microscope, Beaker } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const InnovationLab = () => {
+  const navigate = useNavigate();
+
   const innovations = [
     {
+      id: 'neural-fabric',
       icon: Brain,
       title: "Neural Fabric Network",
       description: "Fabric that learns and adapts to your body's unique biometric patterns",
@@ -13,6 +16,7 @@ const InnovationLab = () => {
       color: "neon-blue"
     },
     {
+      id: 'energy-harvesting',
       icon: Zap,
       title: "Energy Harvesting Threads",
       description: "Convert body heat and movement into electrical energy for embedded tech",
@@ -58,6 +62,19 @@ const InnovationLab = () => {
       case 'Testing Phase': return 'text-purple-400';
       default: return 'text-gray-400';
     }
+  };
+
+  const handleLearnMore = (innovationId?: string) => {
+    if (innovationId) {
+      navigate(`/innovation-detail/${innovationId}`);
+    } else {
+      // For innovations without specific pages, show a placeholder
+      alert('Detailed information coming soon!');
+    }
+  };
+
+  const handleApplyNow = () => {
+    navigate('/innovation-lab/apply');
   };
 
   return (
@@ -107,12 +124,15 @@ const InnovationLab = () => {
                 {innovation.title}
               </h3>
               
-              <p className="text-white/70 text-sm leading-relaxed">
+              <p className="text-white/70 text-sm leading-relaxed mb-4">
                 {innovation.description}
               </p>
               
               <div className="mt-4 pt-4 border-t border-gray-700">
-                <button className="text-neon-blue text-sm font-semibold hover:text-white transition-colors">
+                <button 
+                  onClick={() => handleLearnMore(innovation.id)}
+                  className="text-neon-blue text-sm font-semibold hover:text-white transition-colors"
+                >
                   Learn More →
                 </button>
               </div>
@@ -128,7 +148,10 @@ const InnovationLab = () => {
               Be among the first to experience breakthrough technologies. 
               Apply to become a beta tester for our latest innovations.
             </p>
-            <button className="px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple text-black font-semibold rounded-lg hover:scale-105 transition-transform duration-300">
+            <button 
+              onClick={handleApplyNow}
+              className="px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple text-black font-semibold rounded-lg hover:scale-105 transition-transform duration-300"
+            >
               APPLY NOW
             </button>
           </div>

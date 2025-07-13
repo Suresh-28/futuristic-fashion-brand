@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import Cart from './Cart';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -70,15 +71,19 @@ const Navigation = () => {
             >
               SHOP NOW
             </button>
+            <Cart />
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-white hover:text-neon-blue transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="md:hidden flex items-center space-x-4">
+            <Cart />
+            <button
+              className="text-white hover:text-neon-blue transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}

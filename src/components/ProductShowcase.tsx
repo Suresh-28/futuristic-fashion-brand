@@ -1,161 +1,236 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, Star, Eye, ShoppingCart } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '../contexts/CartContext';
 
 const ProductShowcase = () => {
-  const [activeProduct, setActiveProduct] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const [currentProduct, setCurrentProduct] = useState(0);
   const navigate = useNavigate();
+  const { addToCart } = useCart();
 
   const products = [
     {
-      name: "NEURAL JACKET",
-      description: "Adaptive fabric responds to biometric data",
-      price: "$2,499",
-      image: "photo-1485827404703-89b55fcc595e",
-      tech: "Bio-responsive Fibers",
-      id: "neural-jacket"
+      id: 'neural-jacket',
+      name: 'Neural Sync Jacket',
+      price: 2499,
+      image: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=500&h=600&fit=crop',
+      description: 'AI-powered adaptive clothing that responds to your biometric data',
+      features: ['Temperature Control', 'Biometric Monitoring', 'Wireless Charging'],
+      rating: 4.9
     },
     {
-      name: "QUANTUM DRESS", 
-      description: "Light-bending materials create dynamic patterns",
-      price: "$3,799",
-      image: "photo-1485827404703-89b55fcc595e",
-      tech: "Photonic Weave",
-      id: "quantum-dress"
+      id: 'quantum-dress',
+      name: 'Quantum Shift Dress',
+      price: 3299,
+      image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500&h=600&fit=crop',
+      description: 'Color-changing fabric with programmable patterns',
+      features: ['Color Morphing', 'Pattern Programming', 'Smart Fabric'],
+      rating: 4.8
     },
     {
-      name: "CYBER PANTS",
-      description: "Integrated haptic feedback for enhanced experience",
-      price: "$1,899",
-      image: "photo-1485827404703-89b55fcc595e",
-      tech: "Sensory Integration",
-      id: "cyber-pants"
+      id: 'cyber-sneakers',
+      name: 'Cyber Step Sneakers',
+      price: 1899,
+      image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=600&fit=crop',
+      description: 'Self-lacing shoes with energy harvesting soles',
+      features: ['Auto-Lacing', 'Energy Harvesting', 'Health Tracking'],
+      rating: 4.7
     }
   ];
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
     const interval = setInterval(() => {
-      setActiveProduct((prev) => (prev + 1) % products.length);
-    }, 4000);
-
+      setCurrentProduct((prev) => (prev + 1) % products.length);
+    }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [products.length]);
 
-  const handleViewDetails = () => {
-    navigate(`/product-details/${products[activeProduct].id}`);
+  const handleViewDetails = (productId: string) => {
+    navigate(`/product-details/${productId}`);
   };
 
-  const handleTryVirtual = () => {
-    navigate('/virtual-showroom');
+  const handleAddToCart = (product: typeof products[0]) => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image
+    });
   };
 
   return (
-    <section ref={sectionRef} className="min-h-screen bg-black relative overflow-hidden py-20">
-      {/* Animated Fabric Background */}
+    <section className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 py-20 relative overflow-hidden">
+      {/* Parallax Background Effects */}
       <div className="absolute inset-0">
-        <div className="w-full h-full bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5"></div>
-        <div className="absolute inset-0 bg-gradient-radial from-transparent via-blue-500/10 to-transparent animate-pulse"></div>
+        <div className="absolute top-1/4 left-10 w-64 h-64 bg-neon-purple/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/3 right-20 w-48 h-48 bg-neon-blue/10 rounded-full blur-2xl animate-pulse" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-neon-pink/5 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
+        {/* Hero Section */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-7xl font-bold text-white mb-6">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+          <h2 className="text-5xl md:text-7xl font-orbitron font-black text-white mb-6">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink">
               COLLECTIONS
             </span>
           </h2>
-          <p className="text-xl text-white/70 max-w-2xl mx-auto">
-            Discover our revolutionary pieces where innovation meets elegance
+          <p className="text-xl text-white/70 font-inter max-w-3xl mx-auto leading-relaxed">
+            Experience the future of fashion with our revolutionary AI-enhanced garments. 
+            Each piece seamlessly blends cutting-edge technology with timeless design.
           </p>
         </div>
 
-        {/* Split Screen Layout */}
-        <div className="grid md:grid-cols-2 gap-0 min-h-[600px]">
-          {/* Left Side - Product Image */}
-          <div className="relative overflow-hidden group">
-            <div className={`absolute inset-0 transition-transform duration-1000 ${
-              isVisible ? 'translate-x-0' : 'translate-x-[-100%]'
-            }`}>
+        {/* Product Showcase */}
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Product Image */}
+          <div className="relative group">
+            <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500" />
+            <div className="relative bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-neon-blue/30 group-hover:border-neon-blue/50 transition-all duration-500">
               <img
-                src={`https://images.unsplash.com/${products[activeProduct].image}?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80`}
-                alt={products[activeProduct].name}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                src={products[currentProduct].image}
+                alt={products[currentProduct].name}
+                className="w-full h-96 object-cover rounded-lg mb-6 transform group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 mix-blend-overlay"></div>
-              <div className="absolute inset-0 border-4 border-blue-400/50 animate-pulse"></div>
+              <div className="flex justify-center space-x-2">
+                {products.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentProduct(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentProduct ? 'bg-neon-blue' : 'bg-white/30'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Right Side - Product Info */}
-          <div className="bg-gradient-to-br from-gray-900/95 to-black/95 p-12 flex flex-col justify-center relative">
-            <div className="absolute inset-0 opacity-30" style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300f3ff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-            }}></div>
-            
-            <div className="relative z-10">
-              <div className="text-blue-400 text-sm font-semibold mb-2 tracking-widest">
-                {products[activeProduct].tech}
-              </div>
-              
-              <h3 className="text-4xl md:text-5xl font-bold text-white mb-4 hover:animate-pulse cursor-pointer">
-                {products[activeProduct].name}
-              </h3>
-              
-              <p className="text-lg text-white/80 mb-6 leading-relaxed">
-                {products[activeProduct].description}
-              </p>
-              
-              <div className="text-3xl font-bold text-green-400 mb-8">
-                {products[activeProduct].price}
+          {/* Product Details */}
+          <div className="space-y-8">
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    size={20}
+                    className={`${
+                      i < Math.floor(products[currentProduct].rating)
+                        ? 'text-yellow-400 fill-current'
+                        : 'text-gray-400'
+                    }`}
+                  />
+                ))}
+                <span className="text-white/70 ml-2">({products[currentProduct].rating})</span>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button 
-                  onClick={handleViewDetails}
-                  className="px-8 py-4 bg-blue-400 text-black font-semibold hover:bg-transparent hover:text-blue-400 border-2 border-blue-400 transition-all duration-300 transform hover:scale-105"
-                >
-                  VIEW DETAILS
-                </button>
-                <button 
-                  onClick={handleTryVirtual}
-                  className="px-8 py-4 border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-black transition-all duration-300 animate-pulse"
-                >
-                  TRY VIRTUAL
-                </button>
+              <h3 className="text-4xl font-orbitron font-bold text-white mb-4 leading-tight">
+                {products[currentProduct].name}
+              </h3>
+
+              <p className="text-xl text-white/70 font-inter leading-relaxed mb-6">
+                {products[currentProduct].description}
+              </p>
+
+              <div className="text-3xl font-bold text-neon-blue mb-8">
+                ${products[currentProduct].price.toLocaleString()}
               </div>
+            </div>
+
+            {/* Features */}
+            <div>
+              <h4 className="text-xl font-semibold text-white mb-4">Key Features:</h4>
+              <ul className="space-y-2">
+                {products[currentProduct].features.map((feature, index) => (
+                  <li key={index} className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-neon-blue rounded-full" />
+                    <span className="text-white/80">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button
+                onClick={() => handleAddToCart(products[currentProduct])}
+                className="flex-1 px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple text-black font-semibold rounded-lg hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2"
+              >
+                <ShoppingCart size={20} />
+                <span>Add to Cart</span>
+              </button>
+              
+              <button
+                onClick={() => handleViewDetails(products[currentProduct].id)}
+                className="flex-1 px-8 py-4 border border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-black transition-all duration-300 rounded-lg flex items-center justify-center space-x-2"
+              >
+                <Eye size={20} />
+                <span>View Details</span>
+              </button>
             </div>
           </div>
         </div>
 
-        {/* Product Navigation */}
-        <div className="flex justify-center mt-12 space-x-4">
-          {products.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveProduct(index)}
-              className={`w-4 h-4 rounded-full border-2 transition-all duration-300 ${
-                index === activeProduct
-                  ? 'bg-blue-400 border-blue-400 animate-pulse'
-                  : 'border-white/30 hover:border-blue-400'
-              }`}
-            />
-          ))}
+        {/* Product Grid */}
+        <div className="mt-20">
+          <h3 className="text-3xl font-bold text-white text-center mb-12">All Products</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {products.map((product, index) => (
+              <div
+                key={product.id}
+                className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-lg p-6 border border-white/10 hover:border-neon-blue/50 transition-all duration-500 group hover:transform hover:scale-105"
+              >
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-48 object-cover rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300"
+                />
+                
+                <div className="flex items-center space-x-1 mb-2">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      size={16}
+                      className={`${
+                        i < Math.floor(product.rating)
+                          ? 'text-yellow-400 fill-current'
+                          : 'text-gray-400'
+                      }`}
+                    />
+                  ))}
+                  <span className="text-white/70 text-sm ml-1">({product.rating})</span>
+                </div>
+
+                <h4 className="text-xl font-bold text-white mb-2 group-hover:text-neon-blue transition-colors">
+                  {product.name}
+                </h4>
+                
+                <p className="text-white/70 text-sm mb-4 line-clamp-2">
+                  {product.description}
+                </p>
+                
+                <div className="flex items-center justify-between">
+                  <span className="text-neon-blue text-xl font-bold">
+                    ${product.price.toLocaleString()}
+                  </span>
+                  <div className="flex space-x-2">
+                    <button
+                      onClick={() => handleAddToCart(product)}
+                      className="p-2 bg-neon-blue/20 text-neon-blue hover:bg-neon-blue hover:text-black transition-all duration-300 rounded-lg"
+                    >
+                      <ShoppingCart size={16} />
+                    </button>
+                    <button
+                      onClick={() => handleViewDetails(product.id)}
+                      className="p-2 bg-neon-purple/20 text-neon-purple hover:bg-neon-purple hover:text-black transition-all duration-300 rounded-lg"
+                    >
+                      <Eye size={16} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
