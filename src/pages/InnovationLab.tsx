@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ArrowLeft, Cpu, Zap, Brain, Layers, Microscope, Beaker } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -11,45 +10,55 @@ const InnovationLab = () => {
       id: 'neural-fabric',
       icon: Brain,
       title: "Neural Fabric Network",
-      description: "Fabric that learns and adapts to your body's unique biometric patterns",
+      description: "Advanced textile technology that creates a direct interface between fabric and the human nervous system",
       status: "In Development",
-      color: "neon-blue"
+      color: "neon-blue",
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop'
     },
     {
       id: 'energy-harvesting',
       icon: Zap,
       title: "Energy Harvesting Threads",
-      description: "Convert body heat and movement into electrical energy for embedded tech",
+      description: "Revolutionary fibers that convert body heat and kinetic energy into electrical power for embedded devices",
       status: "Prototype",
-      color: "neon-purple"
+      color: "neon-purple",
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop'
     },
     {
+      id: 'programmable-matter',
       icon: Layers,
       title: "Programmable Matter Clothing",
-      description: "Garments that can change shape, color, and texture on command",
+      description: "Garments that can change shape, color, and texture on command using advanced materials",
       status: "Research",
-      color: "neon-pink"
+      color: "neon-pink",
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop'
     },
     {
+      id: 'quantum-processors',
       icon: Cpu,
       title: "Quantum Computing Processors",
-      description: "Miniaturized quantum chips integrated into fashion accessories",
+      description: "Miniaturized quantum chips integrated into fashion accessories for enhanced computing power",
       status: "Beta Testing",
-      color: "neon-green"
+      color: "neon-green",
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop'
     },
     {
+      id: 'nano-sensors',
       icon: Microscope,
       title: "Nano-Scale Sensors",
-      description: "Microscopic health monitoring embedded invisibly in fabric",
+      description: "Microscopic health monitoring devices embedded invisibly in fabric for continuous tracking",
       status: "Production Ready",
-      color: "neon-blue"
+      color: "neon-blue",
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop'
     },
     {
+      id: 'bio-responsive',
       icon: Beaker,
       title: "Bio-Responsive Materials",
-      description: "Fabrics that react to environmental changes and user emotions",
+      description: "Smart fabrics that react to environmental changes and user emotions in real-time",
       status: "Testing Phase",
-      color: "neon-purple"
+      color: "neon-purple",
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop'
     }
   ];
 
@@ -64,13 +73,8 @@ const InnovationLab = () => {
     }
   };
 
-  const handleLearnMore = (innovationId?: string) => {
-    if (innovationId) {
-      navigate(`/innovation-detail/${innovationId}`);
-    } else {
-      // For innovations without specific pages, show a placeholder
-      alert('Detailed information coming soon!');
-    }
+  const handleLearnMore = (innovationId: string) => {
+    navigate(`/innovation-detail/${innovationId}`);
   };
 
   const handleApplyNow = () => {
@@ -108,33 +112,46 @@ const InnovationLab = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {innovations.map((innovation, index) => (
             <div
-              key={index}
-              className="bg-gradient-to-br from-gray-900 to-black border border-neon-blue/30 rounded-lg p-6 hover:border-neon-blue/50 transition-all duration-300 group hover:transform hover:scale-105"
+              key={innovation.id}
+              className="bg-gradient-to-br from-gray-900 to-black border border-neon-blue/30 rounded-lg overflow-hidden hover:border-neon-blue/50 transition-all duration-300 group hover:transform hover:scale-105"
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className={`w-12 h-12 bg-${innovation.color}/20 rounded-full flex items-center justify-center group-hover:animate-pulse`}>
+              {/* Innovation Image */}
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={innovation.image}
+                  alt={innovation.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                <div className={`absolute top-4 right-4 w-12 h-12 bg-${innovation.color}/20 rounded-full flex items-center justify-center group-hover:animate-pulse`}>
                   <innovation.icon className={`text-${innovation.color}`} size={24} />
                 </div>
-                <span className={`text-xs px-3 py-1 rounded-full border ${getStatusColor(innovation.status)}`}>
-                  {innovation.status}
-                </span>
               </div>
-              
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-neon-blue transition-colors">
-                {innovation.title}
-              </h3>
-              
-              <p className="text-white/70 text-sm leading-relaxed mb-4">
-                {innovation.description}
-              </p>
-              
-              <div className="mt-4 pt-4 border-t border-gray-700">
-                <button 
-                  onClick={() => handleLearnMore(innovation.id)}
-                  className="text-neon-blue text-sm font-semibold hover:text-white transition-colors"
-                >
-                  Learn More →
-                </button>
+
+              {/* Content */}
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <span className={`text-xs px-3 py-1 rounded-full border ${getStatusColor(innovation.status)}`}>
+                    {innovation.status}
+                  </span>
+                </div>
+                
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-neon-blue transition-colors">
+                  {innovation.title}
+                </h3>
+                
+                <p className="text-white/70 text-sm leading-relaxed mb-4">
+                  {innovation.description}
+                </p>
+                
+                <div className="mt-4 pt-4 border-t border-gray-700">
+                  <button 
+                    onClick={() => handleLearnMore(innovation.id)}
+                    className="text-neon-blue text-sm font-semibold hover:text-white transition-colors"
+                  >
+                    Learn More →
+                  </button>
+                </div>
               </div>
             </div>
           ))}

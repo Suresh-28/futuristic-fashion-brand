@@ -28,12 +28,12 @@ const InnovationDetail = () => {
       ],
       timeline: '12-18 months',
       teamSize: '15 engineers',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop'
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop'
     },
     'energy-harvesting': {
       title: 'Energy Harvesting Threads',
       description: 'Revolutionary fibers that convert body heat and kinetic energy into electrical power for embedded devices.',
-      fullDescription: 'Energy Harvesting Threads transform the human body into a personal power station. These specially engineered fibers capture thermal energy from body heat and kinetic energy from movement, converting them into usable electrical power. This breakthrough enables truly self-powered wearable technology.',
+      fullDescription: 'Energy Harvesting Threads transform the human body into a personal power station. These specially engineered fibers capture thermal energy from body heat and kinetic energy from movement, converting them into usable electrical power. This breakthrough enables truly self-powered wearable technology that never needs charging.',
       features: [
         'Thermoelectric energy conversion',
         'Piezoelectric motion capture',
@@ -51,7 +51,99 @@ const InnovationDetail = () => {
       ],
       timeline: '8-12 months',
       teamSize: '12 engineers',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop'
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop'
+    },
+    'programmable-matter': {
+      title: 'Programmable Matter Clothing',
+      description: 'Garments that can change shape, color, and texture on command using advanced materials.',
+      fullDescription: 'Programmable Matter Clothing represents the ultimate fusion of fashion and technology. Using advanced smart materials that can be controlled at the molecular level, these garments can transform their appearance, texture, and even structure in response to user commands or environmental conditions.',
+      features: [
+        'Dynamic shape transformation',
+        'Real-time color changing',
+        'Texture modification',
+        'Temperature adaptation',
+        'Weather responsiveness',
+        'User-controlled styling'
+      ],
+      applications: [
+        'Adaptive fashion wear',
+        'Climate-responsive clothing',
+        'Performance sportswear',
+        'Theatrical costumes',
+        'Professional uniforms'
+      ],
+      timeline: '18-24 months',
+      teamSize: '20 engineers',
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop'
+    },
+    'quantum-processors': {
+      title: 'Quantum Computing Processors',
+      description: 'Miniaturized quantum chips integrated into fashion accessories for enhanced computing power.',
+      fullDescription: 'Our Quantum Computing Processors bring the power of quantum computing to wearable fashion. These miniaturized quantum chips can be seamlessly integrated into accessories like watches, jewelry, and clothing, providing unprecedented computational capabilities for AI assistance, data processing, and real-time analytics.',
+      features: [
+        'Quantum processing power',
+        'Miniaturized chip design',
+        'Low power consumption',
+        'AI acceleration',
+        'Real-time analytics',
+        'Secure quantum encryption'
+      ],
+      applications: [
+        'Smart jewelry',
+        'AI-powered accessories',
+        'Wearable computers',
+        'Security devices',
+        'Health analytics'
+      ],
+      timeline: '24-36 months',
+      teamSize: '25 engineers',
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop'
+    },
+    'nano-sensors': {
+      title: 'Nano-Scale Sensors',
+      description: 'Microscopic health monitoring devices embedded invisibly in fabric for continuous tracking.',
+      fullDescription: 'Nano-Scale Sensors represent the future of invisible health monitoring. These microscopic devices can be woven directly into fabric fibers, creating clothing that continuously monitors vital signs, environmental conditions, and health metrics without any visible technology or user intervention.',
+      features: [
+        'Invisible integration',
+        'Continuous monitoring',
+        'Multi-parameter sensing',
+        'Wireless data transmission',
+        'Long battery life',
+        'Medical-grade accuracy'
+      ],
+      applications: [
+        'Health monitoring clothing',
+        'Medical patient wear',
+        'Elderly care garments',
+        'Athletic performance tracking',
+        'Environmental monitoring'
+      ],
+      timeline: '6-9 months',
+      teamSize: '18 engineers',
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop'
+    },
+    'bio-responsive': {
+      title: 'Bio-Responsive Materials',
+      description: 'Smart fabrics that react to environmental changes and user emotions in real-time.',
+      fullDescription: 'Bio-Responsive Materials create clothing that truly understands and responds to both you and your environment. These smart fabrics can detect emotional states through biometric signals and automatically adjust their properties to provide comfort, support, and even therapeutic benefits.',
+      features: [
+        'Emotion detection',
+        'Environmental adaptation',
+        'Automatic adjustment',
+        'Therapeutic responses',
+        'Stress relief mechanisms',
+        'Mood enhancement'
+      ],
+      applications: [
+        'Therapeutic clothing',
+        'Stress management wear',
+        'Mood-responsive fashion',
+        'Medical therapy garments',
+        'Wellness apparel'
+      ],
+      timeline: '15-20 months',
+      teamSize: '16 engineers',
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop'
     }
   };
 
